@@ -8,17 +8,18 @@ sns.set_style('whitegrid')
 # %matplotlib inline
 
 carreira = pd.read_csv('carreira.csv', delimiter=';')
-carreira['inicio'] = carreira['entrada'].apply(lambda x: f'{x[5:7]}/{x[0:4]}')
+carreira['inicio'] = carreira['entrada'].apply(
+    lambda entrada: f'{entrada[5:7]}/{entrada[0:4]}')
 carreira['entrada'] = pd.to_datetime(carreira['entrada'])
 carreira['saida'] = pd.to_datetime(carreira['saida'])
 carreira['tempo'] = carreira['saida'] - carreira['entrada'] + pd.Timedelta(
     days=1)
 carreira['dias'] = carreira['tempo'].apply(
-        lambda x: int(x.total_seconds() / (24 * 3600)))
+        lambda tempo: int(tempo.total_seconds() / (24 * 3600)))
 carreira['anos'] = carreira['dias'].apply(
-        lambda x: pd.Timedelta(days=x).components.days) // 365
+        lambda dias: pd.Timedelta(days=dias).components.days) // 365
 carreira['meses'] = carreira['dias'].apply(
-        lambda x: pd.Timedelta(days=x).components.days % 365) // 30
+        lambda dias: pd.Timedelta(days=dias).components.days % 365) // 30
 
 BGCOLOR = '#fbf0d9'
 
