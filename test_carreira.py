@@ -14,4 +14,4 @@ def test_0():
 
 
 def test_meses():
-    assert format_y_axis(200.0, None) == '6 mese'
+    assert format_y_axis(200.0, None) == '6 meses'
