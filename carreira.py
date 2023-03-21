@@ -4,28 +4,6 @@ import matplotlib.pyplot as plt
 from matplotlib import ticker
 import seaborn as sns
 
-sns.set_style('whitegrid')
-# %matplotlib inline
-
-carreira = pd.read_csv('carreira.csv', delimiter=';')
-carreira['inicio'] = carreira['entrada'].apply(
-    lambda entrada: f'{entrada[5:7]}/{entrada[0:4]}')
-carreira['entrada'] = pd.to_datetime(carreira['entrada'])
-carreira['saida'] = pd.to_datetime(carreira['saida'])
-carreira['tempo'] = carreira['saida'] - carreira['entrada'] + pd.Timedelta(
-    days=1)
-carreira['dias'] = carreira['tempo'].apply(
-        lambda tempo: int(tempo.total_seconds() / (24 * 3600)))
-carreira['anos'] = carreira['dias'].apply(
-        lambda dias: pd.Timedelta(days=dias).components.days) // 365
-carreira['meses'] = carreira['dias'].apply(
-        lambda dias: pd.Timedelta(days=dias).components.days % 365) // 30
-
-BGCOLOR = '#fbf0d9'
-
-fig = plt.figure(figsize=(10, 5))
-fig.set_facecolor(BGCOLOR)
-
 
 def format_y_axis(y_param, _pos):
     meses = int(np.mod(y_param, 365) / 30)
@@ -42,33 +20,56 @@ def format_y_axis(y_param, _pos):
     return y_axis
 
 
-formatter = ticker.FuncFormatter(format_y_axis)
+if __name__ == "__main__":
+    sns.set_style('whitegrid')
+    # %matplotlib inline
 
-ax = plt.gca()
-ax.yaxis.set_major_formatter(formatter)
-ax.set_facecolor(BGCOLOR)
+    carreira = pd.read_csv('carreira.csv', delimiter=';')
+    carreira['inicio'] = carreira['entrada'].apply(
+        lambda entrada: f'{entrada[5:7]}/{entrada[0:4]}')
+    carreira['entrada'] = pd.to_datetime(carreira['entrada'])
+    carreira['saida'] = pd.to_datetime(carreira['saida'])
+    carreira['tempo'] = carreira['saida'] - carreira['entrada'] + pd.Timedelta(
+        days=1)
+    carreira['dias'] = carreira['tempo'].apply(
+            lambda tempo: int(tempo.total_seconds() / (24 * 3600)))
+    carreira['anos'] = carreira['dias'].apply(
+            lambda dias: pd.Timedelta(days=dias).components.days) // 365
+    carreira['meses'] = carreira['dias'].apply(
+            lambda dias: pd.Timedelta(days=dias).components.days % 365) // 30
 
-sns.barplot(data=carreira, x='inicio', y='dias', hue='esfera',
-            palette=sns.color_palette('#a61c00 #1c4587'.split()))
+    BGCOLOR = '#fbf0d9'
 
-plt.title('Carreira', fontsize=14)
-plt.xlabel('início', fontsize=12)
-plt.ylabel('tempo', fontsize=12)
-plt.legend(fontsize=11)
+    fig = plt.figure(figsize=(10, 5))
+    fig.set_facecolor(BGCOLOR)
 
-for bar_container in ax.containers:
-    for rectangle in bar_container:
-        idx = bar_container.index(rectangle)
+    formatter = ticker.FuncFormatter(format_y_axis)
 
-        height = bar_container[idx].get_height()
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(formatter)
+    ax.set_facecolor(BGCOLOR)
 
-        x_pos = bar_container[idx].get_x() + bar_container.patches[
-                idx].get_width() / 2
+    sns.barplot(data=carreira, x='inicio', y='dias', hue='esfera',
+                palette=sns.color_palette('#a61c00 #1c4587'.split()))
 
-        y_pos = height + 20
+    plt.title('Carreira', fontsize=14)
+    plt.xlabel('início', fontsize=12)
+    plt.ylabel('tempo', fontsize=12)
+    plt.legend(fontsize=11)
 
-        text = carreira.iloc[idx]['instituicao']
+    for bar_container in ax.containers:
+        for rectangle in bar_container:
+            idx = bar_container.index(rectangle)
 
-        ax.annotate(text, xy=(x_pos, y_pos), ha='center', fontsize=11)
+            height = bar_container[idx].get_height()
 
-plt.show()
+            x_pos = bar_container[idx].get_x() + bar_container.patches[
+                    idx].get_width() / 2
+
+            y_pos = height + 20
+
+            text = carreira.iloc[idx]['instituicao']
+
+            ax.annotate(text, xy=(x_pos, y_pos), ha='center', fontsize=11)
+
+    plt.show()

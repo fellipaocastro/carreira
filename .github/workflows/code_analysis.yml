@@ -19,4 +19,4 @@ jobs:
         pip install -r requirements.txt
     - name: Analysing the code with pycodestyle and pylint
       run: |
-        pycodestyle *.py; pylint *.py
+        pycodestyle *.py; pylint *.py; pytest
