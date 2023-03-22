@@ -1,3 +1,3 @@
 # carreira
 
-![descarga](https://user-images.githubusercontent.com/1118059/226647712-a95c8abd-015c-45d1-8f47-1e5a082db033.png)
+![image](https://user-images.githubusercontent.com/1118059/227052505-fe49d76c-00fc-4cdd-b971-211baee7cfde.png)
