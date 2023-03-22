@@ -10,7 +10,7 @@ def test_ano():
 
 
 def test_0():
-    assert format_y_axis(0.0, None) == '0 meses'
+    assert format_y_axis(0.0, None) == ''
 
 
 def test_meses():
