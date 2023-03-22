@@ -6,9 +6,7 @@ import seaborn as sns
 
 
 def format_y_axis(y_param, _pos):
-    meses = int(np.mod(y_param, 365) / 30)
-
-    y_axis = f'{meses} meses'
+    y_axis = ''
 
     anos = y_param / 365
 
@@ -16,6 +14,10 @@ def format_y_axis(y_param, _pos):
         ano_str = 'anos' if anos >= 2 else 'ano'
 
         y_axis = f'{anos:.1f} {ano_str}'.replace('.', ',')
+    elif anos > 0:
+        meses = int(np.mod(y_param, 365) / 30)
+
+        y_axis = f'{meses} meses'
 
     return y_axis
 
