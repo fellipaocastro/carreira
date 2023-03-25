@@ -8,7 +8,7 @@ import seaborn as sns
 
 
 def format_date(date):
-    return datetime.strptime(date, "%d/%m/%Y")
+    return datetime.strptime(date, '%d/%m/%Y')
 
 
 def format_y_axis(y_param, _pos):
@@ -28,7 +28,7 @@ def format_y_axis(y_param, _pos):
     return y_axis
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sns.set_style('whitegrid')
     # %matplotlib inline
 
