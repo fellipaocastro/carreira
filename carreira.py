@@ -1,8 +1,14 @@
+from datetime import datetime
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import ticker
 import seaborn as sns
+
+
+def format_date(date):
+    return datetime.strptime(date, "%d/%m/%Y")
 
 
 def format_y_axis(y_param, _pos):
@@ -28,9 +34,9 @@ if __name__ == "__main__":
 
     carreira = pd.read_csv('carreira.csv', delimiter=';')
     carreira['inicio'] = carreira['entrada'].apply(
-        lambda entrada: f'{entrada[5:7]}/{entrada[0:4]}')
-    carreira['entrada'] = pd.to_datetime(carreira['entrada'])
-    carreira['saida'] = pd.to_datetime(carreira['saida'])
+        lambda entrada: f'{entrada[3:5]}/{entrada[6:10]}')
+    carreira['entrada'] = carreira['entrada'].apply(format_date)
+    carreira['saida'] = carreira['saida'].apply(format_date)
     carreira['tempo'] = carreira['saida'] - carreira['entrada'] + pd.Timedelta(
         days=1)
     carreira['dias'] = carreira['tempo'].apply(
