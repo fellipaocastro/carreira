@@ -80,4 +80,5 @@ if __name__ == '__main__':
 
             ax.annotate(text, xy=(x_pos, y_pos), ha='center', fontsize=11)
 
+    plt.savefig('carreira.png')
     plt.show()
