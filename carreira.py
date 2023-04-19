@@ -33,18 +33,13 @@ if __name__ == '__main__':
     # %matplotlib inline
 
     carreira = pd.read_csv('carreira.csv', delimiter=';')
-    carreira['inicio'] = carreira['entrada'].apply(
-        lambda entrada: f'{entrada[3:5]}/{entrada[6:10]}')
+    carreira['inicio'] = carreira['entrada'].apply(lambda entrada: f'{entrada[3:5]}/{entrada[6:10]}')
     carreira['entrada'] = carreira['entrada'].apply(format_date)
     carreira['saida'] = carreira['saida'].apply(format_date)
-    carreira['tempo'] = carreira['saida'] - carreira['entrada'] + pd.Timedelta(
-        days=1)
-    carreira['dias'] = carreira['tempo'].apply(
-            lambda tempo: int(tempo.total_seconds() / (24 * 3600)))
-    carreira['anos'] = carreira['dias'].apply(
-            lambda dias: pd.Timedelta(days=dias).components.days) // 365
-    carreira['meses'] = carreira['dias'].apply(
-            lambda dias: pd.Timedelta(days=dias).components.days % 365) // 30
+    carreira['tempo'] = carreira['saida'] - carreira['entrada'] + pd.Timedelta(days=1)
+    carreira['dias'] = carreira['tempo'].apply(lambda tempo: int(tempo.total_seconds() / (24 * 3600)))
+    carreira['anos'] = carreira['dias'].apply(lambda dias: pd.Timedelta(days=dias).components.days) // 365
+    carreira['meses'] = carreira['dias'].apply(lambda dias: pd.Timedelta(days=dias).components.days % 365) // 30
 
     BGCOLOR = '#fbf0d9'
 
@@ -57,8 +52,7 @@ if __name__ == '__main__':
     ax.yaxis.set_major_formatter(formatter)
     ax.set_facecolor(BGCOLOR)
 
-    sns.barplot(data=carreira, x='inicio', y='dias', hue='esfera',
-                palette=sns.color_palette('#a61c00 #1c4587'.split()))
+    sns.barplot(data=carreira, x='inicio', y='dias', hue='esfera', palette=sns.color_palette('#a61c00 #1c4587'.split()))
 
     plt.title('Carreira', fontsize=14)
     plt.xlabel('início', fontsize=12)
@@ -71,8 +65,7 @@ if __name__ == '__main__':
 
             height = bar_container[idx].get_height()
 
-            x_pos = bar_container[idx].get_x() + bar_container.patches[
-                    idx].get_width() / 2
+            x_pos = bar_container[idx].get_x() + bar_container.patches[idx].get_width() / 2
 
             y_pos = height + 20
 
