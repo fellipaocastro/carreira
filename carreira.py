@@ -8,6 +8,11 @@ import seaborn as sns
 
 
 def format_date(date):
+    date = str(date)
+
+    if date == 'nan':
+        return datetime.strptime(datetime.now().strftime('%d/%m/%Y'), '%d/%m/%Y')
+
     return datetime.strptime(date, '%d/%m/%Y')
 
 
