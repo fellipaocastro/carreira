@@ -2,7 +2,7 @@
 
 ![carreira](https://raw.githubusercontent.com/fellipaocastro/carreira/main/carreira/carreira.png)
 
-## tempo em empresa/órgão
+## tempo trabalhado em cada empresa/órgão
 
 ### setup recomendado
 
