@@ -1,3 +1,32 @@
 # carreira
 
-![carreira](https://user-images.githubusercontent.com/1118059/232259358-bb57fa73-32b7-43a7-a83b-3bb95d4a8c91.png)
+![carreira](https://raw.githubusercontent.com/fellipaocastro/carreira/main/carreira.png)
+
+## tempo em empresa/órgão
+
+### setup recomendado
+
+```bash
+pyenv virtualenv 3.12.3 carreira
+```
+```bash
+pip install -r requirements/local.txt
+```
+
+### testes automatizados
+
+```bash
+pytest -vv --diff-symbols --cov carreira
+```
+
+### análise estática de código
+
+```bash
+pylint carreira
+```
+
+### análise de convenções de estilo
+
+```bash
+pycodestyle carreira
+```

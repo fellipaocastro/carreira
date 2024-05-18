@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from carreira import format_y_axis, format_date
+from carreira.__main__ import format_y_axis, format_date
 
 
 def test_format_date():
