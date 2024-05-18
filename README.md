@@ -12,6 +12,9 @@ pyenv virtualenv 3.12.3 carreira
 ```bash
 pip install -r requirements/local.txt
 ```
+```bash
+python -m carreira
+```
 
 ### testes automatizados
 

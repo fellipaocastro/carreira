@@ -31,8 +31,9 @@ def format_y_axis(y_param, _pos):
 
 if __name__ == '__main__':
     sns.set_style('whitegrid')
+    # %matplotlib inline
 
-    carreira = pd.read_csv('carreira.csv', delimiter=';')
+    carreira = pd.read_csv('carreira/carreira.csv', delimiter=';')
     carreira['entrada'] = carreira['entrada'].apply(format_date)
     carreira['saida'] = carreira['saida'].apply(format_date)
     carreira['dias'] = (carreira['saida'] - carreira['entrada']).dt.days + 1
@@ -64,5 +65,5 @@ if __name__ == '__main__':
             text = carreira.iloc[container.index(rect)]['instituicao']
             ax.annotate(text, xy=(x_pos, y_pos), ha='center', fontsize=11)
 
-    plt.savefig('carreira.png')
+    plt.savefig('carreira/carreira.png')
     plt.show()
