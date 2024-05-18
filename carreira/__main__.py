@@ -1,4 +1,5 @@
 from datetime import datetime
+from os import path
 
 import matplotlib.pyplot as plt
 from matplotlib import ticker
@@ -32,7 +33,9 @@ def main() -> None:
     sns.set_style('whitegrid')
     # %matplotlib inline
 
-    carreira = pd.read_csv('carreira/carreira.csv', delimiter=';')
+    script_dir = path.dirname(path.abspath(__file__))
+
+    carreira = pd.read_csv(path.join(script_dir, 'carreira.csv'), delimiter=';')
     carreira['entrada'] = carreira['entrada'].apply(format_date)
     carreira['saida'] = carreira['saida'].apply(format_date)
     carreira['dias'] = (carreira['saida'] - carreira['entrada']).dt.days + 1
@@ -64,7 +67,7 @@ def main() -> None:
             text = carreira.iloc[container.index(rect)]['instituicao']
             ax.annotate(text, xy=(x_pos, y_pos), ha='center', fontsize=11)
 
-    plt.savefig('carreira/carreira.png')
+    plt.savefig(path.join(script_dir, 'carreira.png'))
     plt.show()
 
 
