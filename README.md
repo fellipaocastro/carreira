@@ -1,6 +1,6 @@
 # carreira
 
-![build status](https://github.com/fellipaocastro/carreira/actions/workflows/code_analysis.yml/badge.svg)(https://github.com/fellipaocastro/carreira/actions)
+[![build status](https://github.com/fellipaocastro/carreira/actions/workflows/code_analysis.yml/badge.svg)](https://github.com/fellipaocastro/carreira/actions/workflows/code_analysis.yml)
 
 ![carreira](https://raw.githubusercontent.com/fellipaocastro/carreira/main/carreira/carreira.png)
 
