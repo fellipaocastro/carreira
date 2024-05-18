@@ -1,6 +1,6 @@
 # carreira
 
-![carreira](https://raw.githubusercontent.com/fellipaocastro/carreira/main/carreira.png)
+![carreira](https://raw.githubusercontent.com/fellipaocastro/carreira/main/carreira/carreira.png)
 
 ## tempo em empresa/órgão
 
