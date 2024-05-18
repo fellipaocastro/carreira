@@ -7,12 +7,11 @@ import pandas as pd
 import seaborn as sns
 
 
-def format_date(date):
-    date = str(date)
+def format_date(date: str) -> datetime:
     return datetime.strptime(date, '%d/%m/%Y') if date != 'nan' else datetime.now()
 
 
-def format_y_axis(y_param, _pos):
+def format_y_axis(y_param: int, _pos: int) -> str:
     y_axis = ''
 
     anos = y_param / 365
@@ -29,7 +28,7 @@ def format_y_axis(y_param, _pos):
     return y_axis
 
 
-if __name__ == '__main__':
+def main() -> None:
     sns.set_style('whitegrid')
     # %matplotlib inline
 
@@ -40,11 +39,11 @@ if __name__ == '__main__':
 
     carreira['inicio'] = carreira['entrada'].dt.strftime('%m/%Y')
 
-    BGCOLOR = '#fbf0d9'
+    bgcolor = '#fbf0d9'
 
     fig, ax = plt.subplots(figsize=(10, 5))
-    fig.set_facecolor(BGCOLOR)
-    ax.set_facecolor(BGCOLOR)
+    fig.set_facecolor(bgcolor)
+    ax.set_facecolor(bgcolor)
 
     formatter = ticker.FuncFormatter(format_y_axis)
     ax.yaxis.set_major_formatter(formatter)
@@ -67,3 +66,7 @@ if __name__ == '__main__':
 
     plt.savefig('carreira/carreira.png')
     plt.show()
+
+
+if __name__ == '__main__':
+    main()

@@ -13,16 +13,16 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.11.4
-    - name: Install dependencies
+    - name: instalar dependências
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run pylint
+        pip install -r requirements/local.txt
+    - name: testes automatizados
       run: |
-        pylint *.py
-    - name: Run pycodestyle
+        pytest -vv --diff-symbols --cov carreira
+    - name: análise estática de código
       run: |
-        pycodestyle *.py
-    - name: Run pytest
+        pylint carreira
+    - name: análise de convenções de estilo
       run: |
-        pytest
+        pycodestyle carreira
